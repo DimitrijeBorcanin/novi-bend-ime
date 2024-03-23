@@ -1,9 +1,9 @@
 <script>  
     export default {
-        props: ["name", "suffix"],
+        props: ["name", "suffix", "textTransform"],
         data(){
             return {
-                songList: ["Neka vozi", "Mašta radi svašta", "Daleko", "Mrak"], 
+                songList: ["Neka vozi", "Ona živi za noć", "Mašta radi svašta", "Daleko", "Mrak"], 
             }
         },
         methods: {
@@ -18,7 +18,7 @@
 
 <template>
   <div @click="copy()" class="cursor-pointer border rounded flex-grow mt-5 p-3 font-bold text-sm md:text-lg" v-if="name !== ''">
-    <h2 class="py-1" v-for="song in songList" :key="song">{{name}} - {{song}} {{suffix}}</h2>
+    <h2 class="py-1" v-for="song in songList" :key="song">{{name}} - <span :style="{ textTransform: textTransform }">{{song}}</span> {{suffix}}</h2>
   </div>
 </template>
 

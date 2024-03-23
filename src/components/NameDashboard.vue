@@ -7,7 +7,8 @@ import NameList from './NameList.vue'
         data(){
             return {
                 name: "",
-                suffix: ""
+                suffix: "",
+                textTransform: "",
             }
         },
         methods: {
@@ -16,6 +17,9 @@ import NameList from './NameList.vue'
             },
             suffixAdded(value){
                 this.suffix = value;
+            },
+            textTransformChanged(value){
+                this.textTransform = value;
             }
         }
     }
@@ -23,8 +27,8 @@ import NameList from './NameList.vue'
 
 <template>
   <div class="flex flex-col md:flex-row gap-5 px-3 md:px-0">
-    <name-list @name-added="nameAdded" @suffix-added="suffixAdded" />
-    <name-examples :name="name" :suffix="suffix" />
+    <name-list @name-added="nameAdded" @suffix-added="suffixAdded" @text-transform-changed="textTransformChanged" />
+    <name-examples :name="name" :suffix="suffix" :textTransform="textTransform" />
   </div>
 </template>
 

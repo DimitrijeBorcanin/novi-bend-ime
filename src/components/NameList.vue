@@ -3,7 +3,8 @@
         data() {
             return {
                 newNameInput: "",
-                suffixInput: "[OFFICIAL MUSIC VIDEO]",
+                suffixInput: "",
+                textTransform: "none"
             }
         },
         methods: {
@@ -12,10 +13,15 @@
             },
             suffixAdded(){
                 this.$emit('suffix-added', this.suffixInput)
+            },
+            textTransformChanged(event){
+                const value = event.target.value;
+                this.$emit('text-transform-changed', value)
             }
         },
         mounted(){
             this.$emit('suffix-added', this.suffixInput)
+            this.$emit('text-transform-changed', this.textTransform)
         }
     }
 </script>
@@ -29,6 +35,20 @@
     <div>
         <label for="suffix">Sufiks</label>
         <input id="suffix" type="text" class="border rounded w-full p-1" v-model="suffixInput" @keyup="suffixAdded"/>
+    </div>
+    <div class="flex gap-5">
+        <div class="flex gap-1">
+            <input id="rbNormal" type="radio" v-model="textTransform" value="none" @change="textTransformChanged($event)" />
+            <label for="rbNormal">Normalno</label>
+        </div>
+        <div class="flex gap-1">
+            <input id="rbUppercase" type="radio" v-model="textTransform" value="uppercase" @change="textTransformChanged($event)" />
+            <label for="rbUppercase">Velika slova</label>
+        </div>
+        <div class="flex gap-1">
+            <input id="rbLowercase" type="radio" v-model="textTransform" value="lowercase" @change="textTransformChanged($event)" />
+            <label for="rbLowercase">Mala slova</label>
+        </div>
     </div>
     <!-- <ul class="border rounded w-full">
         <li v-for="item in list" :key="item.id" :class="{active: item.value === selected}" @click="$emit('selection-change', item.value)">
